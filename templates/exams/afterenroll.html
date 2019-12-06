@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 700px; /* Should be removed. Only for demonstration */
+  justify-content: space-around;
+}
+.column2 {
+  float: left;
+  width: 75%;
+  padding: 10px;
+  height: 700px; /* Should be removed. Only for demonstration */
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+
+</head>
+<body onload="countdown();">
+
+
+<h2>Welcome to {{ email }} for {{ sname1 }} course</h2>
+<div>
+        Time Left ::
+        <input id="minutes" type="text" style="width: 10px;
+             border: none; font-size: 16px;
+            font-weight: bold; color: black;"><font size="5"> :
+                        </font>
+        <input id="seconds" type="text" style="width: 20px;
+                        border: none; font-size: 16px;
+                        font-weight: bold; color: black;">
+    </div>
+
+<div class="row"><center>
+  <div class="column1">
+    <h2>Column 1</h2>
+    <p>Some text..</p>
+      <form action="onemark" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="subname" value={{ sname1 }}>
+          <input type="hidden" name="marks" value="one">
+          <input type="hidden" name="emailid" value={{ email }}>
+          <input type="submit" value="Easy" class="btn btn-md bg-primary">
+      </form>
+      <br>
+      <br>
+      <form action="twomark" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="subname" value={{ sname1 }}>
+          <input type="hidden" name="marks" value="one">
+          <input type="hidden" name="emailid" value={{ email }}>
+          <input type="submit" value="Medium" class="btn btn-md" style="background-color: #ff8800">
+      </form>
+      <br>
+      <br>
+
+
+
+      <form action="threemark" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="subname" value={{ sname1 }}>
+          <input type="hidden" name="marks" value="one">
+          <input type="hidden" name="emailid" value={{ email }}>
+          <input type="submit" value="Hard" class="btn bg-danger btn-md" style="background-color: #ff4444">
+      </form>
+
+  </div></center>
+  <div class="column2" style="background-color:#bbb opacity: 0.5;">
+    <h2>Column 2</h2>
+    <p>Some text..</p>
+      <form method="post" action="marksevaluation">
+          {% csrf_token %}
+      <ol type="1">
+      {% for i in data %}
+        {% ifequal i.subname subject %}
+            {% ifequal i.marks marks %}
+                    <li>
+                    {{ i.question }}<br>
+                    <input type="radio" name="{{ i.question }}" value={{ i.option1 }}>{{ i.option1 }}<br>
+                    <input type="radio" name="{{ i.question }}" value={{ i.option2 }}>{{ i.option2 }}<br>
+                    <input type="radio" name="{{ i.question }}" value={{ i.option3 }}>{{ i.option3 }}<br>
+                    <input type="radio" name="{{ i.question }}" value={{ i.option4 }}>{{ i.option4 }}<br>
+                    </li>
+            {% endifequal %}
+        {% endifequal %}
+
+      {% endfor %}
+      </ol>
+          <input type="hidden" name="subject" value={{ subject }}>
+          <input type="hidden" name="marks" value={{ marks }}>
+          <input type="hidden" name="emailid" value={{ email }}>
+          <input type="submit" value="Submit" style="background-color: #2bbbad">
+          </form>
+  </div>
+</div>
+{% for i in data %}
+    i<br>
+{% endfor %}
+
+</body>
+</html>

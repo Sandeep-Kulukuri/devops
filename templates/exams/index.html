@@ -1,0 +1,13 @@
+{% extends "exams/base.html" %}
+{% block title %}
+Index
+{% endblock %}
+{% block nav-right %}
+          <ul class="nav navbar-nav navbar-right padding">
+          <li> <a href="{% url 'login' %}" style="hover: #3fff00;"><span class="fa fa-sign-in fa-lg">Login</span></a></li>
+            <li> <a href="{% url 'register' %}"><span class="fa fa-sign-out fa-lg">Sign-up</span></a></li>
+            </ul>
+          {% endblock %}
+{% block body %}
+
+{% endblock %}

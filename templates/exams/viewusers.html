@@ -1,0 +1,16 @@
+{% extends 'exams/base.html' %}
+{% block title %}
+users
+{% endblock %}
+{% block body %}
+
+{% for i in reguser %}
+
+<ul>
+    <li>
+        {{ i.email }}
+
+    </li>
+</ul>
+{% endfor %}
+{% endblock %}

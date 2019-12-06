@@ -1,0 +1,55 @@
+{% extends 'exams/base.html' %}
+{% block style %}
+input[type=text], input[type=password] {
+  width: 15%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+border-radius: 20px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+ border-radius: 20px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.container {
+  padding: 16px;
+  padding-right: 12px;
+}
+{% endblock %}
+{% block body %}
+ <center>
+<h2>Add Domain</h2>
+
+<form action="user" method="post">
+   {% csrf_token %}
+ <br>
+  <input type="text" placeholder="Enter Subject Name" name="sname" required>
+<br>
+
+    <input type="text" placeholder="Enter Domain name" name="dname" required>
+<br>
+    <button type="submit">Add</button>
+
+  </div>
+
+
+</form>
+
+</center>
+
+{% endblock %}
